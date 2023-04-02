@@ -1,13 +1,14 @@
 const express= require("express")
 const route= require("./routes/route.js")
 const {default:mongoose}= require("mongoose")
-// const multer=require("multer")
+ const multer=require("multer")
+const PORT= 3001
 const cors= require('cors')
 
 const app= express()
 
 app.use(express.json())
-// app.use(multer().any())
+app.use(multer().any())
 
 app.use(
     function(req,res,next){
@@ -28,6 +29,6 @@ mongoose.connect("mongodb+srv://aliabbasbackendcohort:AMMIabbu321@cluster67.6fp9
 
 app.use("/",route)
 
-app.listen(process.env.PORT || 3001, function(){
-    console.log("express app is running on port" +(process.env.PORT || 3001))
+app.listen(PORT, function(){
+    console.log(`express app is running on port${PORT}`)
 })

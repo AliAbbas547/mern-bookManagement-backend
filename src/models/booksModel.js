@@ -64,7 +64,11 @@ const booksSchema= new mongoose.Schema({
         img:{
             type:String
         },
-        bookCover:String  
+        bookCover:String,
+        price:{
+          type:Number
+
+        }  
 
 
         

@@ -17,7 +17,7 @@ const userSchema= new mongoose.Schema({
     phone:{
         type:String,
         required:true,
-        unique:true,
+      
         trim:true
        
     },
@@ -49,4 +49,4 @@ const userSchema= new mongoose.Schema({
 
 },{timestamps:true});
 
-module.exports= mongoose.model("User",userSchema)
+module.exports= mongoose.model("CheckUser",userSchema)

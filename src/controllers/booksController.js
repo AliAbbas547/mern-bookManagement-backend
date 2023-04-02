@@ -1,5 +1,5 @@
 const BooksModel = require("../models/booksModel");
-const UserModel = require("../models/UserModel");
+const UserModel = require("../models/userModel");
 const ReviewModel = require("../models/reviewModel");
 const moment = require("moment");
 
@@ -11,6 +11,8 @@ const createBooks = async function (req, res) {
   
 
     const data = req.body;
+    const files= req.files
+    console.log(files)
     if (Object.keys(data).length == 0) {
       return res
         .status(400)
@@ -165,7 +167,7 @@ const createBooks = async function (req, res) {
           message: " provide valid date formate(year,month,date)",
         });
     }
-
+    data["img"]="https://source.unsplash.com/random/?books"
     const createBooks = await BooksModel.create(data);
     return res
       .status(201)
@@ -189,7 +191,8 @@ const   getBooksData = async function (req, res) {
       category: 1,
       releasedAt: 1,
       reviews: 1,
-      img:1
+      img:1,
+      price:1
     };
 
     let Booksdata = await BooksModel.find({

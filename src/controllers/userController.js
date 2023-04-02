@@ -1,4 +1,4 @@
-const UserModel= require("../models/UserModel")
+const UserModel= require("../models/userModel")
 const Validations= require("../validations/validation")
 const jwt = require("jsonwebtoken");
 
@@ -47,14 +47,14 @@ const createUser = async function (req, res) {
        if (!phone) {
          return res.status(400).send({ status: false, message: "please enter the mobileNumber" })
        }
-      //  if (!Validations.isValidMobileNumber(phone)) {
-      //    return res.status(400).send({ status: false, message: "mobile number must start with [9,8,7,6] in order to get the indian mobile number " })
-      //  }
+       if (!Validations.isValidMobileNumber(phone)) {
+         return res.status(400).send({ status: false, message: "mobile number must start with [9,8,7,6] in order to get the indian mobile number " })
+       }
        
-         const phoneValidation = await UserModel.findOne({ phone: phone })
-         if (phoneValidation!= null) {
-           return res.status(400).send({ status: false, message: "this phone is already register" })
-         }
+        //  const phoneValidation = await UserModel.findOne({ phone: phone })
+        //  if (phoneValidation!= null) {
+        //    return res.status(400).send({ status: false, message: "this phone is already register" })
+        //  }
        
        if (!email) {
          return res.status(400).send({ status: false, message: "Please Provide email" })

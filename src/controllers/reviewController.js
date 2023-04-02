@@ -1,5 +1,5 @@
 const BooksModel = require("../models/booksModel");
-const UserModel = require("../models/UserModel");
+const UserModel = require("../models/userModel");
 const ReviewModel = require("../models/reviewModel");
 
 const Validations = require("../validations/validation");
@@ -112,7 +112,7 @@ const createReview = async function (req, res) {
         .status(404)
         .send({ status: false, message: " book is already deleted" });
     }
-
+    data["img"]="https://source.unsplash.com/random/?books"
     const createReview = await ReviewModel.create(data);
     //  return res.status(201).send({ status: true, data:createReview })
 
@@ -146,8 +146,7 @@ const createReview = async function (req, res) {
 const  updateReviews = async function (req, res) {
   try {
 
-    let newOne= await ReviewModel.updateMany({isDeleted:false},{$set:{img:"https://source.unsplash.com/random/?books"}})
-    return res.status(200).send({msg:"done",data:newOne})
+   
     const data = req.body;
     if (Object.keys(data).length == 0) {
       return res

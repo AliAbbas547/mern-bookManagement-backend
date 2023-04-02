@@ -7,12 +7,14 @@ const middleware= require("../middleware/middleware")
 const userController = require("../controllers/userController")
 const BooksController = require("../controllers/booksController")
 const ReviewController = require("../controllers/reviewController")
+const OrderController= require("../controllers/OrderController")
 
 router.post("/", function(req,res){
     res.send("done")
 })
 
 router.post("/register",userController.createUser)
+
 router.post("/login",userController.login)
 router.post("/books",BooksController.createBooks)
 router.get("/books",BooksController.getBooksData)
@@ -22,6 +24,12 @@ router.delete("/books/:bookId",middleware.authenticate,middleware.authorize,Book
 router.post("/books/:bookId/review",ReviewController.createReview)
 router.put("/books/:bookId/review/:reviewId",ReviewController.updateReviews)
 router.delete("/books/:bookId/review/:reviewId",ReviewController.deleteReviews)
+
+router.post("/createOrder",OrderController.createOrderData)
+router.get("/geteOrder",OrderController.getCartData)
+router.post("/getFiles",OrderController.getFile)
+
+
 
 
 
